@@ -1,0 +1,19 @@
+
+
+class Solution:
+    def evenlyDivides (self, N):
+        # code here
+        count=0
+        temp=N
+        while N>0:
+            a = N%10
+            try:
+                if temp%a == 0:
+                    count +=1
+                    
+            except:
+                pass
+            N = N//10
+        return count
+
+
