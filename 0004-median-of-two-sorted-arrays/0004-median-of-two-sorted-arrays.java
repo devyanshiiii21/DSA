@@ -17,7 +17,7 @@ class Solution {
         if(arr.size() % 2 == 1){
             med = arr.get(medium);
         }
-        else if(arr.size() % 2 == 0){
+        else{
             med = (arr.get(medium)+ arr.get(medium-1))/2.0;
         }
         return med;
