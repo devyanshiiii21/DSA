@@ -13,12 +13,12 @@ class Solution {
         }
         Collections.sort(arr);
         
-        int medium = arr.size()/2;
+        int size = arr.size();
         if(arr.size() % 2 == 1){
-            med = arr.get(medium);
+            med = arr.get(size/2);
         }
         else{
-            med = (arr.get(medium)+ arr.get(medium-1))/2.0;
+            med = (arr.get(size/2)+ arr.get(size/2 - 1))/2.0;
         }
         return med;
     }
