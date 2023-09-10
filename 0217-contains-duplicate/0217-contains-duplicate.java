@@ -1,12 +1,26 @@
-import java.util.Arrays;
+import java.util.HashMap;
 class Solution {
     public boolean containsDuplicate(int[] nums) {
-        Arrays.sort(nums);
-        int i;
-        for(i = 0; i< nums.length-1; i++){
-            if(nums[i] == nums[i+1])
-                return true; 
-        }           
+//         Creating HashMap
+        HashMap<Integer, Integer> map = new HashMap<>();
+        
+//         Creating Hash Table
+        for(int i = 0; i< nums.length; i++){
+            if(map.containsKey(nums[i])){
+                map.put(nums[i], map.get(nums[i])+1);
+            }
+            else{
+                map.put(nums[i], 1);
+            }
+        }    
+        
+//         Map Traversal
+
+        for(int key : map.keySet()){
+            if(map.get(key) > 1){
+                return true;
+            }
+        }
         return false;
     }
 }
