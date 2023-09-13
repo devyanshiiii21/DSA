@@ -1,31 +1,13 @@
 class Solution {
-    public int[] applyOperations(int[] nums) {
+    public int removeDuplicates(int[] nums) {
+        int j = 1;
         int n = nums.length;
-        ArrayList<Integer> list = new ArrayList<>();
-        for(int i = 0; i< n-1; i++){
-            if(nums[i] == nums[i+1]){
-                nums[i] *= 2;
-                nums[i+1] = 0;
+        for(int i = 1; i < n; i++){
+            if(nums[i] != nums[i-1]){
+                nums[j] = nums[i];
+                j++;
             }
         }
-        
-        int count=0;
-        for(int i=0;i<n;i++){
-            if(nums[i]==0){
-                count++;
-            }
-        }
-        for(int i=0; i<n;i++){
-            if(nums[i]!=0){
-                list.add(nums[i]);
-            }
-        }
-        for(int i=0; i<count; i++){
-            list.add(0);
-        }
-       for (int i = 0; i < list.size(); i++){
-            nums[i] = list.get(i);
-    }
-        return nums;
+        return j;
     }
 }
