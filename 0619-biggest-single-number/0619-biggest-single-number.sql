@@ -5,6 +5,6 @@ From(Select num
     From MyNumbers
     Group By num
     having count(num) = 1
-    ) NEW;
+    ) AS UniqueNumbers;
     
     
