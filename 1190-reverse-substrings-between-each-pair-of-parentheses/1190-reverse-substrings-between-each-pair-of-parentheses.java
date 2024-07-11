@@ -1,24 +1,34 @@
 class Solution {
     public String reverseParentheses(String s) {
-        Stack<Character> st = new Stack<>();
+        Stack<Integer> st = new Stack<>();
         StringBuilder ans = new StringBuilder();
         
-        for(char ch : s.toCharArray()){
-            if(ch == '(' || ch != ')'){
-                st.push(ch);
+        int pair[] = new int[s.length()];
+        
+        for(int i = 0; i < s.length(); i++){
+            char ch = s.charAt(i);
+            if(ch == '('){
+                st.push(i);
             }
-            else{
-                ArrayList<Character> list = new ArrayList<>();
-                while(!st.isEmpty() && st.peek() != '(') list.add(st.pop());
-                st.pop();
-                
-                for(char c : list){
-                    st.push(c);
-                }
+            else if(ch == ')'){
+                int openIndex = st.pop();
+                pair[i] = openIndex;
+                pair[openIndex]  = i;
             } 
         }
-        while(!st.isEmpty()){
-            ans.insert(0, st.pop());
+        
+        int dir = 1;
+        int curr = 0;
+        while(curr < s.length()){
+            char ch = s.charAt(curr);
+            if(ch == '(' || ch == ')'){
+                curr = pair[curr];
+                dir = -1 * dir;
+            }
+            else
+                ans.append(ch);
+            
+            curr += dir;
         }
         return ans.toString();
     }
