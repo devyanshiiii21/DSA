@@ -1,22 +1,34 @@
 class Solution {
     public int countPrimes(int n) {
-        int[] primes = new int[n+1];
-        for(int i = 2; i < n; i++){
-            primes[i] = 1;
+        if (n <= 2) {
+            return 0; 
         }
         
-        for(int i = 2; i*i < n; i++){
-            if(primes[i] == 1){
-                for(int j = i*i; j<n; j+=i){
-                    primes[j] = 0;
+        boolean[] primes = new boolean[n];  
+        
+        for (int i = 2; i < n; i++){
+            primes[i] = true;
+        }
+        
+        //Sieve of Eratosthenes algorithm
+        for(int i = 2; i * i < n; i++){
+            if (primes[i]) {
+                for(int j = i * i; j < n; j += i){
+                    primes[j] = false; 
                 }
             }
         }
+        
         int count = 0;
-        for(int i = 2; i < n; i++){
-            if(primes[i] == 1) count++;
+        for (int i = 2; i < n; i++) {
+            if (primes[i]) {
+                count++;
+            }
         }
         
         return count;
     }
 }
+
+        
+     
