@@ -8,7 +8,13 @@ class Solution {
             Arrays.fill(row, -1);
         }
         
-        return tabulation(text1, text2, dp, n, m);
+        int[] prev = new int[m+1];
+        Arrays.fill(prev, 0);
+        
+        int[] curr = new int[m+1];
+        Arrays.fill(curr, 0);
+        
+        return spOp(text1, text2, prev, curr, n, m);
     }
 //     Memoization
     public int lcs(int i, int j, String s, String t, int[][] dp){
@@ -41,5 +47,25 @@ class Solution {
             }
         }
         return dp[n][m];
+    }
+//     Space Optimization
+    public int spOp(String s, String t, int[] prev, int[] curr, int n, int m){
+//         Base cases
+        for(int i = 0; i <= m; i++){
+            prev[i] = 0;
+        }
+
+        for(int i = 1; i <= n; i++){
+            for(int j = 1; j <= m; j++){
+                if(s.charAt(i-1) == t.charAt(j-1)) curr[j] = 1 + prev[j-1];
+                else
+                    curr[j] = Math.max(prev[j], curr[j-1]); 
+            }
+            int[] temp = prev;
+            prev = curr;
+            curr = temp;
+        }
+
+        return prev[m];
     }
 }
