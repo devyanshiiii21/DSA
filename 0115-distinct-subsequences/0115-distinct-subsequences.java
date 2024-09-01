@@ -4,22 +4,14 @@ class Solution {
         int m = t.length();
         
         int[] prev = new int[m+1];
-        int[] curr = new int[m+1];
         
         prev[0] = 1;
-        curr[0] = 1;
         
         for(int i = 1; i <= n; i++){
-            for(int j = 1; j <= m; j++){
+            for(int j = m; j >= 1; j--){
                 if(s.charAt(i-1) == t.charAt(j-1))
-                    curr[j] = prev[j-1] + prev[j];
-                else
-                    curr[j] = prev[j];
+                    prev[j] = prev[j-1] + prev[j];
             }
-            
-            int[] temp = prev;
-            prev = curr;
-            curr = temp;
         }
     
         
